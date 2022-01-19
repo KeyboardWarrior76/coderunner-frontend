@@ -1,4 +1,5 @@
-const { override, addBabelPlugin } = require('customize-cra');
+const { override, addBabelPlugin, addWebpackPlugin } = require('customize-cra');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 // These aliases allow us to import directly from the given directories.
 // !!! Make sure to add these aliases to the jsconfig.json for autocompletion.
@@ -22,4 +23,9 @@ module.exports = override(
       },
     },
   ]),
+  addWebpackPlugin(
+    (new MonacoWebpackPlugin({
+      languages: ['javascript']
+    }))
+  )
 );
